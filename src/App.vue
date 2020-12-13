@@ -62,7 +62,7 @@ export default {
 
 <template>
   <div>
-    <h1>Space Game</h1>
+    <h1>Launching with Composition API</h1>
     <div class="game-stage">
       <div class="mini-game-wrapper">
         <div v-if="activeScreen === 'Not Started'">
@@ -93,13 +93,29 @@ export default {
         class="panel"
         :class="activeScreen === 'Not Started' ? '' : 'is-hidden'"
       >
-        <button class="panel-button" @click="startGame">Start Game</button>
+        <button class="nes-btn is-primary" @click="startGame">
+          Start Game
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <style>
+body,
+button {
+  font-family: 'Press Start 2P', cursive;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Ruslan Display', cursive;
+}
+
 .mini-game-wrapper {
   display: flex;
 }
@@ -131,11 +147,5 @@ export default {
 .panel.is-hidden {
   transform: translateY(140%);
   opacity: 0;
-}
-
-.panel-button {
-  border-radius: 50%;
-  width: 75px;
-  height: 75px;
 }
 </style>
