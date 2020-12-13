@@ -102,6 +102,17 @@ export default {
 </template>
 
 <style>
+html {
+  width: 100%;
+  height: 100vh;
+  background: 50% 100% / cover no-repeat url('/images/background-dashboard.png'),
+    80% -175px / cover no-repeat url('/images/background-planet.jpg');
+}
+
+body {
+  background: transparent;
+}
+
 body,
 button {
   font-family: 'Press Start 2P', cursive;
