@@ -62,11 +62,14 @@ export default {
 
 <template>
   <div>
-    <h1>Launching with Composition API</h1>
     <div class="game-stage">
-      <div class="mini-game-wrapper">
-        <div v-if="activeScreen === 'Not Started'">
-          <p>Ready to play?</p>
+      <div class="content-wrapper nes-container is-dark">
+        <div v-if="activeScreen === 'Not Started'" class="screen">
+          <h1 class="title">Launching with Composition API</h1>
+          <p>Ready to embark on your mission?</p>
+          <button class="nes-btn is-primary" @click="startGame">
+            Start Mission
+          </button>
         </div>
         <div v-else-if="activeScreen === 'Game Started'">
           <h2>Mission</h2>
@@ -88,14 +91,6 @@ export default {
         >
           <component :is="activeScreen" @mini-game-won="updateMiniGame" />
         </MiniGame>
-      </div>
-      <div
-        class="panel"
-        :class="activeScreen === 'Not Started' ? '' : 'is-hidden'"
-      >
-        <button class="nes-btn is-primary" @click="startGame">
-          Start Game
-        </button>
       </div>
     </div>
   </div>
@@ -127,17 +122,27 @@ h6 {
   font-family: 'Ruslan Display', cursive;
 }
 
-.mini-game-wrapper {
-  display: flex;
+.title {
+  color: white;
+  font-size: 2.75rem;
+}
+
+.content-wrapper {
+  padding: 4rem;
+  text-align: center;
+}
+
+.content-wrapper p {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .game-stage {
-  border: 5px solid black;
-  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 10rem;
 }
 
 .panel {
