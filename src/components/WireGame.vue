@@ -55,16 +55,16 @@ export default {
           label: 'red'
         }
       ])
+    },
+    userWins() {
+      return !this.matchStatus.includes(false)
     }
   },
   watch: {
-    matchStatus: {
-      handler(status) {
-        if (!status.includes(false)) {
-          this.$emit('mini-game-won', 'wire-game')
-        }
-      },
-      deep: true
+    userWins(status) {
+      if (status) {
+        this.$emit('mini-game-won', 'wire-game')
+      }
     }
   },
   mounted() {
@@ -212,6 +212,10 @@ export default {
         </ul>
       </div>
     </div>
+    <p class="wire-game-status">
+      <i class="nes-icon coin is-medium" :class="userWins ? '' : 'is-off'"></i>
+      <span>Power {{ userWins ? 'On' : 'Off' }}</span>
+    </p>
   </article>
 </template>
 
@@ -220,7 +224,21 @@ export default {
   margin-bottom: 2rem;
 }
 
-.wire-game-svg {
+.wire-game-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wire-game-status .nes-icon.coin {
+  margin-right: 40px;
+}
+
+.wire-game-status .nes-icon.coin.is-off {
+  filter: grayscale(1);
+}
+
+.wire-game .wire-game-svg {
   width: 100%;
 }
 
