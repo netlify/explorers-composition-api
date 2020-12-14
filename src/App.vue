@@ -148,11 +148,11 @@ h6 {
 }
 
 .game-stage h2 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .game-stage h3 {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .game-stage .nes-progress {
