@@ -133,8 +133,8 @@ export default {
 
 <template>
   <div>
-    <div :class="$style.wireboard">
-      <div :class="$style.panel">
+    <div class="wire-game-wireboard">
+      <div class="wire-game-panel">
         <ul>
           <li v-for="wire in userWires" :key="`user-${wire.label}`">
             <div
@@ -148,12 +148,12 @@ export default {
         </ul>
       </div>
 
-      <div :class="$style.panel" style="flex: 1;">
-        <svg :class="$style.svg">
+      <div class="wire-game-panel" style="flex: 1;">
+        <svg class="wire-game-svg">
           <line
             v-show="drawWire.display"
             :key="`wire-line-draw`"
-            :class="$style.line"
+            class="wire-game-line"
             :x1="drawWire.x1"
             :y1="drawWire.y1"
             :x2="mousePosition.x - drawWire.offsetLeft"
@@ -163,7 +163,7 @@ export default {
           <line
             v-for="wire in wireLines"
             :key="`wire-line-${wire.label}`"
-            :class="$style.line"
+            class="wire-game-line"
             :x1="wire.x1"
             :y1="wire.y1"
             :x2="wire.x2"
@@ -173,7 +173,7 @@ export default {
         </svg>
       </div>
 
-      <div :class="$style.panel">
+      <div class="wire-game-panel">
         <ul>
           <li
             v-for="wire in correctWires"
@@ -191,21 +191,21 @@ export default {
   </div>
 </template>
 
-<style module>
-.svg {
+<style>
+.wire-game-svg {
   width: 100%;
 }
 
-.line {
+.wire-game-line {
   stroke-width: 5px;
 }
 
-.wireboard {
+.wire-game-wireboard {
   display: flex;
 }
 
-.panel ul,
-.panel li {
+.wire-game-panel ul,
+.wire-game-panel li {
   list-style: none;
   margin: 0;
   padding: 0;
