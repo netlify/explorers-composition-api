@@ -35,6 +35,17 @@ export default {
         (accumulator, currentValue) => accumulator && currentValue.complete,
         true
       )
+    },
+    taskProgress() {
+      let completedTasks = 0
+
+      this.minigames.forEach(minigame => {
+        if (minigame.complete) {
+          completedTasks += 1
+        }
+      })
+
+      return Math.floor((completedTasks / 3) * 100)
     }
   },
   methods: {
@@ -74,6 +85,13 @@ export default {
         <div v-else-if="activeScreen === 'Game Started'">
           <h2>Mission</h2>
           <p>Complete all three mini-games to win!</p>
+          <h3>Progress</h3>
+          <progress
+            class="nes-progress is-success"
+            :value="taskProgress"
+            max="100"
+          ></progress>
+          <h3>Tasks</h3>
           <ul>
             <li
               v-for="minigame in minigames"
