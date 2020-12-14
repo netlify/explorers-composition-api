@@ -17,14 +17,17 @@ export default {
     minigames: [
       {
         id: 'password-game',
+        label: 'Enter Password',
         complete: false
       },
       {
         id: 'sequence-game',
+        label: 'Solve Sequence',
         complete: false
       },
       {
         id: 'wire-game',
+        label: 'Match Wires',
         complete: false
       }
     ]
@@ -85,20 +88,24 @@ export default {
         <div v-else-if="activeScreen === 'Game Started'">
           <h2>Mission</h2>
           <p>Complete all three mini-games to win!</p>
-          <h3>Progress</h3>
+          <h3>Progress - {{ taskProgress }}%</h3>
           <progress
             class="nes-progress is-success"
             :value="taskProgress"
             max="100"
           ></progress>
           <h3>Tasks</h3>
-          <ul>
+          <ul class="task-list">
             <li
               v-for="minigame in minigames"
               :key="minigame.id"
               @click="registerSelection(minigame.id)"
             >
-              {{ minigame.id }} - {{ minigame.complete }}
+              <i
+                class="task-item-star nes-icon is-large star"
+                :class="minigame.complete ? '' : 'is-transparent'"
+              ></i>
+              <p>{{ minigame.label }}</p>
             </li>
           </ul>
         </div>
@@ -138,6 +145,18 @@ h4,
 h5,
 h6 {
   font-family: 'Ruslan Display', cursive;
+}
+
+.game-stage h2 {
+  font-size: 4rem;
+}
+
+.game-stage h3 {
+  font-size: 2.5rem;
+}
+
+.game-stage .nes-progress {
+  margin-bottom: 30px;
 }
 
 .title {
@@ -184,5 +203,18 @@ h6 {
 .panel.is-hidden {
   transform: translateY(140%);
   opacity: 0;
+}
+
+.task-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.task-item-star.task-item-star {
+  margin-bottom: 80px;
 }
 </style>
