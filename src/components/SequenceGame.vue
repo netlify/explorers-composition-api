@@ -56,7 +56,6 @@ export default {
 
 <template>
   <div>
-    <h2>Chosen Sequence</h2>
     <div class="color-swatch-wrapper">
       <div
         v-for="(color, index) in userSequence"
@@ -72,7 +71,7 @@ export default {
       <button
         v-for="(color, index) in colorOptions"
         :key="`color-${index}`"
-        class="color-swatch"
+        class="nes-container color-swatch"
         :style="`background-color: ${color};`"
         @click="addColorToSequence(color)"
       >
@@ -90,10 +89,9 @@ export default {
 }
 
 .color-swatch {
-  border: 2px solid black;
   padding: 1rem;
+  border: 3px solid white;
   color: white;
   font-weight: bold;
-  border: 0;
 }
 </style>
