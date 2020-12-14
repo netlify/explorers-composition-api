@@ -26,17 +26,27 @@ export default {
   <section class="mini-game">
     <h1>{{ gameTitle }}</h1>
     <slot />
-    <div>
-      <button @click="returnToHomeScreen">Back to Game Status</button>
+    <div class="mini-game-cta">
+      <button class="nes-btn" @click="returnToHomeScreen">
+        Back to Game Status
+      </button>
     </div>
   </section>
 </template>
 
 <style>
 .mini-game {
-  border: 2px solid rgb(14, 162, 162);
-  padding: 2rem;
-  width: 200px;
   position: relative;
+  padding: 2rem;
+  padding-bottom: 0;
+}
+
+.mini-game h1 {
+  font-size: 4rem;
+}
+
+.mini-game-cta {
+  margin-top: 45px;
+  margin-bottom: 45px;
 }
 </style>

@@ -25,28 +25,61 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h1>MiniGame</h1>
-    <p>{{ gameStatus }}</p>
-    <p class="post-it">Secret Password: {{ correctPassword }}</p>
-    <label for="enter-password">Enter Password</label>
-    <input
-      id="enter-password"
-      type="text"
-      v-model="passwordInput"
-      @keyup.enter="checkPassword"
-    />
-    <button type="submit" @click="checkPassword">Submit</button>
-  </div>
+  <form class="password-task" @submit.prevent>
+    <div class="password-task-input">
+      <label for="enter-password">Enter Password</label>
+      <input
+        id="enter-password"
+        type="text"
+        v-model="passwordInput"
+        @keyup.enter="checkPassword"
+      />
+    </div>
+    <p class="post-it nes-container">
+      Secret Password: <br />{{ correctPassword }}
+    </p>
+    <button
+      class="password-task-submit nes-btn is-primary"
+      type="submit"
+      @click="checkPassword"
+    >
+      Submit
+    </button>
+  </form>
 </template>
 
 <style>
+.password-task {
+  display: grid;
+}
+
+.password-task-input {
+  display: grid;
+  margin-bottom: 30px;
+}
+
+.password-task-input label {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.password-task-input input {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.password-task-submit {
+  font-size: 1.2rem;
+}
+
 .post-it {
-  background-color: yellow;
   position: absolute;
-  bottom: -100px;
-  right: -75px;
+  bottom: -200px;
+  right: -200px;
   padding: 1rem;
-  width: 100px;
+  width: 300px;
+  background-color: yellow;
+  color: black;
 }
 </style>
