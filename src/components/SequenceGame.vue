@@ -7,8 +7,7 @@ export default {
       gameStatus: 'In Progress',
       userSequence: [],
       displayValidation: false,
-      trackValidation: [false, false, false],
-      colorOptions: ['red', 'blue', 'green']
+      colorOptions: [{ label: 'red' }, { label: 'blue' }, { label: 'green' }]
     }
   },
   computed: {
@@ -16,7 +15,11 @@ export default {
       return shuffle(['blue', 'green', 'red'])
     },
     displaySequence() {
-      let defaultColors = ['black', 'black', 'black']
+      let defaultColors = [
+        { label: 'black' },
+        { label: 'black' },
+        { label: 'black' }
+      ]
 
       this.userSequence.forEach((item, index) => {
         defaultColors[index] = item
@@ -25,18 +28,26 @@ export default {
       return defaultColors
     },
     userWins() {
-      return this.trackValidation.findIndex(item => item === false) === -1
+      if (this.userSequence && this.userSequence.length === 3) {
+        return this.userSequence.reduce((accumulator, currentValue) => {
+          return accumulator && currentValue.matched
+        }, true)
+      } else {
+        return false
+      }
     }
   },
   methods: {
     addColorToSequence(color) {
-      this.userSequence.push(color)
+      this.userSequence.push({
+        ...color,
+        matched: false
+      })
     },
     checkColorSequence() {
-      for (let i = 0; i < this.userSequence.length; i++) {
-        this.trackValidation[i] =
-          this.userSequence[i] === this.correctSequence[i]
-      }
+      this.userSequence.forEach((item, index) => {
+        item.matched = item.label === this.correctSequence[index]
+      })
 
       this.displayValidation = true
 
@@ -46,7 +57,7 @@ export default {
         setTimeout(() => {
           this.userSequence = []
           this.displayValidation = false
-        }, 3000)
+        }, 2000)
       }
     }
   },
@@ -65,43 +76,52 @@ export default {
 
 <template>
   <div>
-    <div class="color-swatch-wrapper">
-      <div
-        v-for="(color, index) in userSequence"
-        :key="`color-${index}`"
-        class="color-swatch"
-        :style="`background-color: ${color};`"
-      >
-        {{ displayValidation ? trackValidation[index] : color }}
+    <section>
+      <h2>{{ userWins ? 'Correct' : 'Mystery' }} Sequence</h2>
+      <div class="color-swatch-wrapper">
+        <div
+          v-for="(color, index) in displaySequence"
+          :key="`color-${index}`"
+          class="nes-container color-swatch"
+          :style="`background-color: ${color.label};`"
+        >
+          <i
+            class="color-swatch-heart nes-icon is-large heart"
+            :class="color.matched ? '' : 'is-empty'"
+          ></i>
+          <span class="color-swatch-text">
+            {{ color.label === 'black' ? 'black' : color.label }}
+          </span>
+        </div>
       </div>
-    </div>
-    <h2>Selected Sequence</h2>
-    <div class="color-swatch-wrapper">
-      <div
-        v-for="(color, index) in displaySequence"
-        :key="`color-${index}`"
-        class="nes-container color-swatch"
-        :style="`background-color: ${color};`"
-      >
-        {{ color === 'black' ? 'black' : color }}
+    </section>
+    <section v-if="!userWins">
+      <h2>Inputs</h2>
+      <div class="color-swatch-wrapper">
+        <button
+          v-for="(color, index) in colorOptions"
+          :key="`color-${index}`"
+          class="nes-container color-swatch"
+          :style="`background-color: ${color.label};`"
+          @click="addColorToSequence(color)"
+        >
+          {{ color.label }}
+        </button>
       </div>
-    </div>
-    <h2>Inputs</h2>
-    <div class="color-swatch-wrapper">
-      <button
-        v-for="(color, index) in colorOptions"
-        :key="`color-${index}`"
-        class="nes-container color-swatch"
-        :style="`background-color: ${color};`"
-        @click="addColorToSequence(color)"
-      >
-        {{ color }}
-      </button>
-    </div>
+    </section>
   </div>
 </template>
 
 <style>
+.color-swatch-heart {
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.color-swatch-text {
+  margin-top: 15px;
+}
+
 .color-swatch-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -110,6 +130,10 @@ export default {
 }
 
 .color-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
   border: 3px solid white;
   color: white;

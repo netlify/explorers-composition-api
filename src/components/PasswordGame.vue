@@ -9,6 +9,9 @@ export default {
   computed: {
     correctPassword() {
       return Math.floor(Math.random() * 1000000 + 1000).toString()
+    },
+    userWins() {
+      return this.gameStatus === 'Player Wins!'
     }
   },
   methods: {
@@ -26,6 +29,7 @@ export default {
 
 <template>
   <form class="password-task" @submit.prevent>
+    <h2>{{ userWins ? 'ACCESS GRANTED' : 'ACCESS DENIED' }}</h2>
     <div class="password-task-input">
       <label for="enter-password">Enter Password</label>
       <input
