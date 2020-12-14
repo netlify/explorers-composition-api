@@ -77,7 +77,7 @@ export default {
 <template>
   <div>
     <div class="game-stage">
-      <div class="content-wrapper nes-container is-dark">
+      <div class="content-wrapper nes-container is-dark" id="content-wrapper">
         <div v-if="activeScreen === 'Not Started'" class="screen">
           <h1 class="title">Launching with Composition API</h1>
           <p>Ready to embark on your mission?</p>

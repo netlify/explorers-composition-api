@@ -104,13 +104,36 @@ export default {
 
       const wireIndex = this.userWires.findIndex(userWire => userWire === wire)
       const itemOffsetLeft = $event.target.offsetLeft
-      const parentOffsetLeft = $event.target.offsetParent.offsetLeft
       const itemWidth = $event.target.clientWidth
-      const itemOffsetTop = $event.target.offsetTop
-      const parentOffsetTop = $event.target.offsetParent.offsetTop
 
-      const offsetLeft = itemOffsetLeft + parentOffsetLeft + itemWidth
-      const offsetTop = itemOffsetTop + parentOffsetTop - 20 * wireIndex
+      const elContentWrapper = document.querySelector('#content-wrapper')
+      const elMiniGame = document.querySelector('#mini-game')
+      const elWireGame = document.querySelector('#wire-game')
+
+      const contentWrapperOffset = {
+        left: elContentWrapper.offsetLeft,
+        top: elContentWrapper.offsetTop
+      }
+
+      const miniGameOffset = {
+        left: elMiniGame.offsetLeft,
+        top: elMiniGame.offsetTop
+      }
+
+      const wireGameOffset = {
+        left: elWireGame.offsetLeft,
+        top: elWireGame.offsetTop
+      }
+
+      const offsetLeft =
+        itemOffsetLeft +
+        itemWidth +
+        wireGameOffset.left +
+        miniGameOffset.left +
+        contentWrapperOffset.left -
+        20
+      const offsetTop =
+        wireGameOffset.top + miniGameOffset.top + contentWrapperOffset.top + 65
 
       this.drawWire = {
         display: true,
@@ -132,7 +155,8 @@ export default {
 </script>
 
 <template>
-  <div>
+  <article class="wire-game" id="wire-game">
+    <p class="wire-game-description">Hook up the wires!</p>
     <div class="wire-game-wireboard">
       <div class="wire-game-panel">
         <ul>
@@ -188,10 +212,14 @@ export default {
         </ul>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <style>
+.wire-game-description.wire-game-description {
+  margin-bottom: 2rem;
+}
+
 .wire-game-svg {
   width: 100%;
 }

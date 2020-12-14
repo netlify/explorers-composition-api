@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-  <section class="mini-game">
+  <section class="mini-game" id="mini-game">
     <h1>{{ gameTitle }}</h1>
     <slot />
     <div class="mini-game-cta">
