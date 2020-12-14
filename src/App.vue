@@ -125,15 +125,18 @@ h6 {
 .title {
   color: white;
   font-size: 2.75rem;
+  line-height: 1;
+  margin-bottom: 1rem;
 }
 
 .content-wrapper {
   padding: 4rem;
   text-align: center;
+  max-width: 80%;
 }
 
 .content-wrapper p {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
