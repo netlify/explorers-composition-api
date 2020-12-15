@@ -2,7 +2,7 @@
 export default {
   data() {
     return {
-      gameStatus: 'In Progress',
+      status: 'In Progress',
       passwordInput: ''
     }
   },
@@ -10,17 +10,35 @@ export default {
     correctPassword() {
       return Math.floor(Math.random() * 1000000 + 1000).toString()
     },
+    gameStatus() {
+      if (this.status === 'Wrong password!') {
+        return {
+          styles: 'is-red',
+          text: 'Access Denied'
+        }
+      } else if (this.status === 'Player Wins!') {
+        return {
+          styles: 'is-green',
+          text: 'Access Granted'
+        }
+      } else {
+        return {
+          styles: '',
+          text: 'Locked'
+        }
+      }
+    },
     userWins() {
-      return this.gameStatus === 'Player Wins!'
+      return this.status === 'Player Wins!'
     }
   },
   methods: {
     checkPassword() {
       if (this.correctPassword === this.passwordInput) {
-        this.gameStatus = 'Player Wins!'
+        this.status = 'Player Wins!'
         this.$emit('mini-game-won', 'password-game')
       } else {
-        this.gameStatus = 'Wrong password!'
+        this.status = 'Wrong password!'
       }
     }
   }
@@ -29,8 +47,8 @@ export default {
 
 <template>
   <form class="password-task" @submit.prevent>
-    <p class="password-task-status" :class="userWins ? 'is-green' : 'is-red'">
-      <span>{{ userWins ? 'ACCESS GRANTED' : 'ACCESS DENIED' }}</span>
+    <p class="password-task-status" :class="gameStatus.styles">
+      <span>{{ gameStatus.text }}</span>
     </p>
     <div class="password-task-input">
       <label for="enter-password">Enter Password</label>
@@ -86,11 +104,15 @@ export default {
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
   color: #ccc;
-  border: 5px dashed var(--red);
+  border: 5px dashed #ccc;
 }
 
 .password-task-status.is-green {
   border-color: var(--green);
+}
+
+.password-task-status.is-red {
+  border-color: var(--red);
 }
 
 .post-it {
