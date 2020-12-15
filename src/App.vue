@@ -1,24 +1,28 @@
 <script>
-import VictoryScreen from './components/VictoryScreen.vue'
+import AppFooter from './components/AppFooter.vue'
+import HomeScreen from './components/HomeScreen.vue'
 import MiniGame from './components/MiniGame.vue'
 import PasswordGame from './components/PasswordGame.vue'
 import SequenceGame from './components/SequenceGame.vue'
+import VictoryScreen from './components/VictoryScreen.vue'
+import WelcomeScreen from './components/WelcomeScreen.vue'
 import WireGame from './components/WireGame.vue'
-import AppFooter from './components/AppFooter.vue'
 import { launchConfetti } from './utils/canvasConfetti'
 
 export default {
   components: {
-    VictoryScreen,
     AppFooter,
+    HomeScreen,
     MiniGame,
+    PasswordGame,
     SequenceGame,
-    WireGame,
-    PasswordGame
+    VictoryScreen,
+    WelcomeScreen,
+    WireGame
   },
   data: () => ({
     activeScreen: 'Not Started',
-    minigames: [
+    miniGames: [
       {
         id: 'password-game',
         label: 'Enter Password',
@@ -38,7 +42,7 @@ export default {
   }),
   computed: {
     gameComplete() {
-      return this.minigames.reduce(
+      return this.miniGames.reduce(
         (accumulator, currentValue) => accumulator && currentValue.complete,
         true
       )
@@ -46,7 +50,7 @@ export default {
     taskProgress() {
       let completedTasks = 0
 
-      this.minigames.forEach(minigame => {
+      this.miniGames.forEach(minigame => {
         if (minigame.complete) {
           completedTasks += 1
         }
@@ -71,7 +75,9 @@ export default {
   watch: {
     gameComplete(status) {
       if (status) {
-        launchConfetti()
+        setTimeout(() => {
+          launchConfetti()
+        }, 1000)
       }
     }
   }
@@ -83,55 +89,17 @@ export default {
     <div class="game-stage">
       <div class="content-wrapper nes-container is-dark" id="content-wrapper">
         <transition name="fade" mode="out-in">
-          <VictoryScreen v-if="!gameComplete" />
-          <div v-else-if="activeScreen === 'Not Started'" class="screen">
-            <img
-              class="welcome-astronaut"
-              src="/images/astronaut-laptop.png"
-              alt="Illustration of astronaut on a laptop. Credit to catalystuff"
-            />
-            <h1>Launching with <br />Composition API</h1>
-            <p>
-              Ready to embark<br />
-              on your mission?
-            </p>
-            <div class="je-link-wrapper">
-              <a
-                class="je-link nes-btn is-success"
-                href="https://explorers.netlify.com/learn/launching-with-composition-api?utm_source=twitter&utm_medium=je-comp-api-mis-bh&utm_campaign=devex"
-              >
-                Learn Composition API <br />
-                with Jamstack Explorers!
-              </a>
-            </div>
-            <button class="nes-btn is-primary" @click="startGame">
-              Start Mission
-            </button>
-          </div>
-          <div v-else-if="activeScreen === 'Game Started'">
-            <h2>Mission</h2>
-            <p>Complete all tasks!</p>
-            <h3>Progress - {{ taskProgress }}%</h3>
-            <progress
-              class="nes-progress is-success"
-              :value="taskProgress"
-              max="100"
-            ></progress>
-            <h3>Tasks</h3>
-            <ul class="task-list">
-              <li
-                v-for="minigame in minigames"
-                :key="minigame.id"
-                @click="registerSelection(minigame.id)"
-              >
-                <i
-                  class="task-item-star nes-icon is-large star"
-                  :class="minigame.complete ? '' : 'is-transparent'"
-                ></i>
-                <p>{{ minigame.label }}</p>
-              </li>
-            </ul>
-          </div>
+          <VictoryScreen v-if="gameComplete" />
+          <WelcomeScreen
+            v-else-if="activeScreen === 'Not Started'"
+            @start-game="startGame"
+          />
+          <HomeScreen
+            v-else-if="activeScreen === 'Game Started'"
+            :taskProgress="taskProgress"
+            :miniGames="miniGames"
+            @register-selection="registerSelection"
+          />
           <MiniGame
             v-else
             @select-screen="registerSelection"

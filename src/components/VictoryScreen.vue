@@ -1,3 +1,7 @@
+<script>
+export default {}
+</script>
+
 <template>
   <article>
     <img
