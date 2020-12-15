@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     returnToHomeScreen() {
-      this.$emit('select-screen', 'Game Started')
+      this.$emit('select-screen', 'Home')
     }
   }
 }
@@ -29,7 +29,7 @@ export default {
     <slot />
     <div class="mini-game-cta">
       <button class="nes-btn" @click="returnToHomeScreen">
-        Back to Game Status
+        Back to Home
       </button>
     </div>
   </section>
