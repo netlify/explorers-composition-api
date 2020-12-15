@@ -1,7 +1,5 @@
 <script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
+export default {
   props: {
     taskProgress: {
       type: Number,
@@ -18,7 +16,7 @@ export default defineComponent({
       this.$emit('register-selection', id)
     }
   }
-})
+}
 </script>
 
 <template>

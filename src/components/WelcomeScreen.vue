@@ -1,8 +1,7 @@
 <script>
-import { defineComponent } from 'vue'
-export default defineComponent({
+export default {
   emits: ['start-game']
-})
+}
 </script>
 
 <template>
