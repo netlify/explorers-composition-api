@@ -43,6 +43,9 @@ export default {
         this.status = PASSWORD_STATUS.FAIL
       }
     }
+  },
+  mounted() {
+    this.status = PASSWORD_STATUS
   }
 }
 </script>
