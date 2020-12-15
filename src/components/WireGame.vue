@@ -216,7 +216,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  border: 3px dashed #ccc;
+  border: 5px dashed #ccc;
 }
 
 .wire-game-status .wire-game-status-content.is-active {

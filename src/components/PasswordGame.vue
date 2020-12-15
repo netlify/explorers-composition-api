@@ -29,8 +29,8 @@ export default {
 
 <template>
   <form class="password-task" @submit.prevent>
-    <h2 :class="userWins ? 'is-green' : 'is-red'">
-      {{ userWins ? 'ACCESS GRANTED' : 'ACCESS DENIED' }}
+    <h2 class="password-task-status" :class="userWins ? 'is-green' : 'is-red'">
+      <span>{{ userWins ? 'ACCESS GRANTED' : 'ACCESS DENIED' }}</span>
     </h2>
     <div class="password-task-input">
       <label for="enter-password">Enter Password</label>
@@ -77,6 +77,23 @@ export default {
 
 .password-task-submit {
   font-size: 1.2rem;
+}
+
+.password-task-status {
+  padding: 1rem;
+  padding-top: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+  border: 5px dashed var(--red);
+}
+
+.password-task-status.is-green {
+  border-color: var(--green);
+}
+
+.password-task-status span {
+  margin-top: 12px;
 }
 
 .post-it {

@@ -77,10 +77,7 @@ export default {
 <template>
   <div>
     <section>
-      <h2
-        class="sequence-game-status"
-        :class="userWins ? 'is-green' : 'is-red'"
-      >
+      <h2 class="sequence-game-status" :class="userWins ? 'is-green' : ''">
         <i
           class="nes-icon trophy is-medium"
           :class="userWins ? '' : 'is-off'"
@@ -155,6 +152,13 @@ export default {
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
+  padding: 1rem;
+  color: #ccc;
+  border: 5px dashed #ccc;
+}
+
+.sequence-game-status.is-green {
+  border-color: var(--green);
 }
 
 .sequence-game-status .nes-icon.trophy.is-off {
