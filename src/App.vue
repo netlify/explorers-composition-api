@@ -3,10 +3,12 @@ import MiniGame from './components/MiniGame.vue'
 import PasswordGame from './components/PasswordGame.vue'
 import SequenceGame from './components/SequenceGame.vue'
 import WireGame from './components/WireGame.vue'
+import AppFooter from './components/AppFooter.vue'
 import { launchConfetti } from './utils/canvasConfetti'
 
 export default {
   components: {
+    AppFooter,
     MiniGame,
     SequenceGame,
     WireGame,
@@ -118,6 +120,7 @@ export default {
         </MiniGame>
       </div>
     </div>
+    <AppFooter />
   </div>
 </template>
 
