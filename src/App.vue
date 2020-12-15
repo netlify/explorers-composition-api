@@ -1,4 +1,5 @@
 <script>
+import VictoryScreen from './components/VictoryScreen.vue'
 import MiniGame from './components/MiniGame.vue'
 import PasswordGame from './components/PasswordGame.vue'
 import SequenceGame from './components/SequenceGame.vue'
@@ -8,6 +9,7 @@ import { launchConfetti } from './utils/canvasConfetti'
 
 export default {
   components: {
+    VictoryScreen,
     AppFooter,
     MiniGame,
     SequenceGame,
@@ -81,24 +83,7 @@ export default {
     <div class="game-stage">
       <div class="content-wrapper nes-container is-dark" id="content-wrapper">
         <transition name="fade" mode="out-in">
-          <div v-if="gameComplete">
-            <img
-              class="welcome-astronaut"
-              src="/images/astronaut-rocket.png"
-              alt="Illustration of astronaut on a rocket. Credit to catalystuff"
-            />
-            <h1>Great job <br />space cadet!</h1>
-            <p>
-              Ready to embark<br />
-              on your next mission?
-            </p>
-            <a
-              class="nes-btn is-primary"
-              href="https://explorers.netlify.com/?utm_source=twitter&utm_medium=comp-api-je-bh&utm_campaign=devex"
-            >
-              Find a new mission
-            </a>
-          </div>
+          <VictoryScreen v-if="!gameComplete" />
           <div v-else-if="activeScreen === 'Not Started'" class="screen">
             <img
               class="welcome-astronaut"
