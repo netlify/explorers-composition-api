@@ -81,8 +81,16 @@ export default {
     <div class="game-stage">
       <div class="content-wrapper nes-container is-dark" id="content-wrapper">
         <div v-if="activeScreen === 'Not Started'" class="screen">
-          <h1 class="title">Launching with Composition API</h1>
-          <p>Ready to embark on your mission?</p>
+          <img
+            class="welcome-astronaut"
+            src="/images/astronaut-laptop.png"
+            alt="Illustration of astronaut on a laptop. Credit to catalystuff"
+          />
+          <h1 class="title">Launching with <br />Composition API</h1>
+          <p>
+            Ready to embark<br />
+            on your mission?
+          </p>
           <button class="nes-btn is-primary" @click="startGame">
             Start Mission
           </button>
@@ -227,6 +235,24 @@ h6 {
 
 .task-item-star.task-item-star {
   margin-bottom: 80px;
+}
+
+.welcome-astronaut {
+  max-width: 100%;
+  margin-bottom: 3rem;
+  animation: hovering 3s infinite ease-in-out;
+}
+
+@keyframes hovering {
+  from {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, -25px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
 }
 
 /* Utility Classes */
