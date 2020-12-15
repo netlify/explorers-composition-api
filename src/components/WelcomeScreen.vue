@@ -5,6 +5,11 @@ export default {
     return {
       topic: 'Composition API'
     }
+  },
+  methods: {
+    startGame() {
+      this.$emit('start-game')
+    }
   }
 }
 </script>
@@ -36,7 +41,7 @@ export default {
         with Jamstack Explorers!
       </a>
     </div>
-    <button class="nes-btn is-primary" @click="$emit('start-game')">
+    <button class="nes-btn is-primary" @click="startGame">
       Start Mission
     </button>
   </article>
