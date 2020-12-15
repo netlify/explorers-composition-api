@@ -1,5 +1,11 @@
 <script>
-export default {}
+export default {
+  methods: {
+    restartGame() {
+      this.$emit('restart-game')
+    }
+  }
+}
 </script>
 
 <template>
@@ -20,10 +26,33 @@ export default {}
       on your next mission?
     </p>
     <a
-      class="nes-btn is-primary"
+      class="victory-cta nes-btn is-primary"
       href="https://explorers.netlify.com/?utm_source=twitter&utm_medium=comp-api-je-bh&utm_campaign=devex"
     >
-      Find a new mission
+      <i class="nes-icon trophy is-medium" /> Find a new mission
     </a>
+    <div>
+      <button class="victory-cta nes-btn is-success" @click="restartGame">
+        <i class="nes-icon coin is-medium" />
+        Play Again
+      </button>
+    </div>
   </article>
 </template>
+
+<style>
+.victory-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.victory-cta.is-primary {
+  margin-bottom: 25px;
+}
+
+.victory-cta .nes-icon {
+  margin-right: 40px;
+}
+</style>
