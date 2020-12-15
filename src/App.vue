@@ -20,26 +20,28 @@ export default {
     WelcomeScreen,
     WireGame
   },
-  data: () => ({
-    activeScreen: 'Not Started',
-    miniGames: [
-      {
-        id: 'password-game',
-        label: 'Enter Password',
-        complete: false
-      },
-      {
-        id: 'sequence-game',
-        label: 'Solve Sequence',
-        complete: false
-      },
-      {
-        id: 'wire-game',
-        label: 'Match Wires',
-        complete: false
-      }
-    ]
-  }),
+  data() {
+    return {
+      activeScreen: 'Not Started',
+      miniGames: [
+        {
+          id: 'password-game',
+          label: 'Enter Password',
+          complete: false
+        },
+        {
+          id: 'sequence-game',
+          label: 'Solve Sequence',
+          complete: false
+        },
+        {
+          id: 'wire-game',
+          label: 'Match Wires',
+          complete: false
+        }
+      ]
+    }
+  },
   computed: {
     gameComplete() {
       return this.miniGames.reduce(
