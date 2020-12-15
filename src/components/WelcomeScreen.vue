@@ -41,7 +41,7 @@ export default {
         with Jamstack Explorers!
       </a>
     </div>
-    <button class="nes-btn is-primary" @click="startGame">
+    <button class="welcome-primary-cta nes-btn is-primary" @click="startGame">
       Start Mission
     </button>
   </article>
@@ -52,5 +52,11 @@ export default {
   max-width: 100%;
   margin-bottom: 3rem;
   animation: hovering 3s infinite ease-in-out;
+}
+
+.welcome-primary-cta {
+  padding: 1rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 </style>
