@@ -194,26 +194,6 @@ h6 {
   margin-top: 5rem;
 }
 
-.panel {
-  border: 2px solid black;
-  width: 200px;
-  height: 300px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  transform: translateY(100%);
-  opacity: 1;
-  transition: transform 0.5s ease-in, opacity 0.5s ease-in;
-  position: absolute;
-}
-
-.panel.is-hidden {
-  transform: translateY(140%);
-  opacity: 0;
-}
-
 .task-list {
   list-style: none;
   display: grid;
@@ -225,12 +205,6 @@ h6 {
 
 .task-item-star.task-item-star {
   margin-bottom: 80px;
-}
-
-.welcome-astronaut {
-  max-width: 100%;
-  margin-bottom: 3rem;
-  animation: hovering 3s infinite ease-in-out;
 }
 
 .fade-enter-active,

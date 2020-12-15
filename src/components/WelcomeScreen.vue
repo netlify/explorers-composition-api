@@ -37,3 +37,11 @@ export default defineComponent({
     </button>
   </article>
 </template>
+
+<style>
+.welcome-astronaut {
+  max-width: 100%;
+  margin-bottom: 3rem;
+  animation: hovering 3s infinite ease-in-out;
+}
+</style>

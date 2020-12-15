@@ -11,7 +11,7 @@ export default {
 <template>
   <article>
     <img
-      class="welcome-astronaut"
+      class="astronaut-rocket"
       src="/images/astronaut-rocket.png"
       alt="Illustration of astronaut on a rocket. Credit to catalystuff"
     />
@@ -54,5 +54,11 @@ export default {
 
 .victory-cta .nes-icon {
   margin-right: 40px;
+}
+
+.astronaut-rocket {
+  max-width: 100%;
+  margin-bottom: 3rem;
+  animation: hovering 3s infinite ease-in-out;
 }
 </style>
