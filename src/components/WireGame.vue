@@ -1,23 +1,11 @@
 <script>
 import shuffle from 'lodash/shuffle'
+import { WIRE_OPTIONS } from '../constants'
 
 export default {
   data() {
     return {
-      userWires: [
-        {
-          label: 'red'
-        },
-        {
-          label: 'yellow'
-        },
-        {
-          label: 'limegreen'
-        },
-        {
-          label: 'cyan'
-        }
-      ],
+      userWires: [],
       matchStatus: [false, false, false, false],
       userSelection: {
         selectedWire: 'black',
@@ -41,20 +29,7 @@ export default {
   },
   computed: {
     correctWires() {
-      return shuffle([
-        {
-          label: 'limegreen'
-        },
-        {
-          label: 'yellow'
-        },
-        {
-          label: 'cyan'
-        },
-        {
-          label: 'red'
-        }
-      ])
+      return shuffle([...this.userWires])
     },
     userWins() {
       return !this.matchStatus.includes(false)
@@ -69,6 +44,7 @@ export default {
   },
   mounted() {
     window.addEventListener('mousemove', this.handleMouseMove)
+    this.userWires = shuffle(WIRE_OPTIONS)
   },
   unmounted() {
     window.removeEventListener('mousemove', this.handleMouseMove)
