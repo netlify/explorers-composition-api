@@ -36,6 +36,7 @@ export default {
       <label for="enter-password">Enter Password</label>
       <input
         id="enter-password"
+        class="nes-input"
         type="text"
         v-model="passwordInput"
         @keyup.enter="checkPassword"
