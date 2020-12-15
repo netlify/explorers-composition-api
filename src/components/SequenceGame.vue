@@ -77,6 +77,10 @@ export default {
 <template>
   <div>
     <section>
+      <p class="sequence-game-description">
+        Instructions: Figure out the correct color sequence using the input
+        buttons.
+      </p>
       <p class="sequence-game-status" :class="userWins ? 'is-green' : ''">
         <i
           class="nes-icon trophy is-medium"
@@ -148,8 +152,13 @@ export default {
   font-weight: bold;
 }
 
+.sequence-game-description {
+  text-align: left;
+}
+
 .sequence-game-status {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-bottom: 1.5rem;
   padding: 1rem;
