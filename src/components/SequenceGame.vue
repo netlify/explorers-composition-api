@@ -77,8 +77,17 @@ export default {
 <template>
   <div>
     <section>
-      <h2 :class="userWins ? 'is-green' : 'is-red'">
-        {{ userWins ? 'Correct' : 'Mystery' }} Sequence
+      <h2
+        class="sequence-game-status"
+        :class="userWins ? 'is-green' : 'is-red'"
+      >
+        <i
+          class="nes-icon trophy is-medium"
+          :class="userWins ? '' : 'is-off'"
+        />
+        <span class="sequence-game-status-text"
+          >{{ userWins ? 'Correct' : 'Mystery' }} Sequence</span
+        >
       </h2>
       <div class="color-swatch-wrapper">
         <div
@@ -140,5 +149,19 @@ export default {
   border: 3px solid white;
   color: white;
   font-weight: bold;
+}
+
+.sequence-game-status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sequence-game-status .nes-icon.trophy.is-off {
+  filter: grayscale(1);
+}
+
+.sequence-game-status-text {
+  margin-top: 13px;
 }
 </style>

@@ -127,9 +127,15 @@ export default {
 <template>
   <article class="wire-game" id="wire-game">
     <p class="wire-game-description">
-      Instructions: Click on the color on the left to select the wire to match,
-      and then select the corresponding color on the right to connect the power.
+      Instructions: Click on the color on the left to select the wire, then
+      click on the matching color to connect the power.
     </p>
+    <div class="wire-game-status">
+      <p class="wire-game-status-content" :class="userWins ? 'is-active' : ''">
+        <i class="nes-icon coin is-medium" :class="userWins ? '' : 'is-off'" />
+        <span>Power {{ userWins ? 'On' : 'Off' }}</span>
+      </p>
+    </div>
     <div class="wire-game-wireboard">
       <div class="wire-game-panel">
         <ul>
@@ -187,17 +193,13 @@ export default {
         </ul>
       </div>
     </div>
-    <p class="wire-game-status">
-      <i class="nes-icon coin is-medium" :class="userWins ? '' : 'is-off'"></i>
-      <span>Power {{ userWins ? 'On' : 'Off' }}</span>
-    </p>
   </article>
 </template>
 
 <style>
 .wire-game-description.wire-game-description {
   margin-bottom: 2rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-align: left;
 }
 
@@ -205,6 +207,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.wire-game-status .wire-game-status-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 3px dashed #ccc;
+}
+
+.wire-game-status .wire-game-status-content.is-active {
+  color: yellow;
+  border-color: yellow;
 }
 
 .wire-game-status .nes-icon.coin {

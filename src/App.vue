@@ -158,8 +158,15 @@ h6 {
   font-family: 'Ruslan Display', cursive;
 }
 
+.game-stage h1 {
+  color: white;
+  font-size: 2.75rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
 .game-stage h2 {
-  font-size: 3rem;
+  font-size: 2.3rem;
 }
 
 .game-stage h3 {
@@ -168,13 +175,6 @@ h6 {
 
 .game-stage .nes-progress {
   margin-bottom: 30px;
-}
-
-.title {
-  color: white;
-  font-size: 2.75rem;
-  line-height: 1;
-  margin-bottom: 1rem;
 }
 
 .content-wrapper {
