@@ -27,7 +27,7 @@ export default {
     </p>
     <a
       class="victory-cta nes-btn is-primary"
-      href="https://explorers.netlify.com/?utm_source=twitter&utm_medium=comp-api-je-bh&utm_campaign=devex"
+      href="https://explorers.netlify.com/?deployed-app&utm_medium=launch-comp-bh&utm_campaign=devex"
     >
       <i class="nes-icon trophy is-medium" /> Find a new mission
     </a>

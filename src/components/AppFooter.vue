@@ -4,7 +4,7 @@
       Powered by
       <a
         class="app-footer-link"
-        href="https://www.netlify.com/?utm_source=github&utm_medium=gigavue-bh&utm_campaign=devex"
+        href="https://www.netlify.com/?utm_source=deployed-app&utm_medium=launch-comp-bh&utm_campaign=devex"
       >
         <img
           class="app-footer-logo"
