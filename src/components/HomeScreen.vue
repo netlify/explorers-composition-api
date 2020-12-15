@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: ['taskProgress', 'miniGames'],
-  emits: ['registerSelection']
+  emits: ['register-selection']
 })
 </script>
 
@@ -20,15 +20,15 @@ export default defineComponent({
     <h3>Tasks</h3>
     <ul class="task-list">
       <li
-        v-for="minigame in miniGames"
-        :key="minigame.id"
-        @click="$emit('register-selection', minigame.id)"
+        v-for="miniGame in miniGames"
+        :key="miniGame.id"
+        @click="$emit('register-selection', miniGame.id)"
       >
         <i
           class="task-item-star nes-icon is-large star"
-          :class="minigame.complete ? '' : 'is-transparent'"
+          :class="miniGame.complete ? '' : 'is-transparent'"
         ></i>
-        <p>{{ minigame.label }}</p>
+        <p>{{ miniGame.label }}</p>
       </li>
     </ul>
   </article>
