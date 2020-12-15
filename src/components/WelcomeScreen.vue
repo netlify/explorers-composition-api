@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-  <article class="screen">
+  <article class="welcome">
     <img class="welcome-astronaut" :src="heroImage.src" :alt="heroImage.alt" />
     <h1>
       Launching with
@@ -50,7 +50,7 @@ export default {
 <style>
 .welcome-astronaut {
   max-width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   animation: hovering 3s infinite ease-in-out;
 }
 
