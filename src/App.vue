@@ -80,55 +80,57 @@ export default {
   <div>
     <div class="game-stage">
       <div class="content-wrapper nes-container is-dark" id="content-wrapper">
-        <div v-if="activeScreen === 'Not Started'" class="screen">
-          <img
-            class="welcome-astronaut"
-            src="/images/astronaut-laptop.png"
-            alt="Illustration of astronaut on a laptop. Credit to catalystuff"
-          />
-          <h1 class="title">Launching with <br />Composition API</h1>
-          <p>
-            Ready to embark<br />
-            on your mission?
-          </p>
-          <button class="nes-btn is-primary" @click="startGame">
-            Start Mission
-          </button>
-        </div>
-        <div v-else-if="activeScreen === 'Game Started'">
-          <h2>Mission</h2>
-          <p>Complete all tasks!</p>
-          <h3>Progress - {{ taskProgress }}%</h3>
-          <progress
-            class="nes-progress is-success"
-            :value="taskProgress"
-            max="100"
-          ></progress>
-          <h3>Tasks</h3>
-          <ul class="task-list">
-            <li
-              v-for="minigame in minigames"
-              :key="minigame.id"
-              @click="registerSelection(minigame.id)"
-            >
-              <i
-                class="task-item-star nes-icon is-large star"
-                :class="minigame.complete ? '' : 'is-transparent'"
-              ></i>
-              <p>{{ minigame.label }}</p>
-            </li>
-          </ul>
-        </div>
-        <MiniGame
-          v-else
-          @select-screen="registerSelection"
-          :gameId="activeScreen"
-        >
-          <template v-slot:progress>
+        <transition name="fade" mode="out-in">
+          <div v-if="activeScreen === 'Not Started'" class="screen">
+            <img
+              class="welcome-astronaut"
+              src="/images/astronaut-laptop.png"
+              alt="Illustration of astronaut on a laptop. Credit to catalystuff"
+            />
+            <h1 class="title">Launching with <br />Composition API</h1>
+            <p>
+              Ready to embark<br />
+              on your mission?
+            </p>
+            <button class="nes-btn is-primary" @click="startGame">
+              Start Mission
+            </button>
+          </div>
+          <div v-else-if="activeScreen === 'Game Started'">
+            <h2>Mission</h2>
+            <p>Complete all tasks!</p>
             <h3>Progress - {{ taskProgress }}%</h3>
-          </template>
-          <component :is="activeScreen" @mini-game-won="updateMiniGame" />
-        </MiniGame>
+            <progress
+              class="nes-progress is-success"
+              :value="taskProgress"
+              max="100"
+            ></progress>
+            <h3>Tasks</h3>
+            <ul class="task-list">
+              <li
+                v-for="minigame in minigames"
+                :key="minigame.id"
+                @click="registerSelection(minigame.id)"
+              >
+                <i
+                  class="task-item-star nes-icon is-large star"
+                  :class="minigame.complete ? '' : 'is-transparent'"
+                ></i>
+                <p>{{ minigame.label }}</p>
+              </li>
+            </ul>
+          </div>
+          <MiniGame
+            v-else
+            @select-screen="registerSelection"
+            :gameId="activeScreen"
+          >
+            <template v-slot:progress>
+              <h3>Progress - {{ taskProgress }}%</h3>
+            </template>
+            <component :is="activeScreen" @mini-game-won="updateMiniGame" />
+          </MiniGame>
+        </transition>
       </div>
     </div>
     <AppFooter />
@@ -241,6 +243,16 @@ h6 {
   max-width: 100%;
   margin-bottom: 3rem;
   animation: hovering 3s infinite ease-in-out;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 @keyframes hovering {
