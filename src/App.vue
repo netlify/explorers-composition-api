@@ -50,8 +50,8 @@ export default {
     taskProgress() {
       let completedTasks = 0
 
-      this.miniGames.forEach(minigame => {
-        if (minigame.complete) {
+      this.miniGames.forEach(miniGame => {
+        if (miniGame.complete) {
           completedTasks += 1
         }
       })
@@ -61,23 +61,28 @@ export default {
   },
   methods: {
     updateMiniGame(id) {
-      const minigame = this.minigames.find(minigame => minigame.id === id)
+      const miniGame = this.miniGames.find(miniGame => miniGame.id === id)
 
-      minigame.complete = true
+      miniGame.complete = true
     },
     startGame() {
-      this.activeScreen = 'Game Started'
+      this.activeScreen = 'Home'
     },
     registerSelection(gameId) {
       this.activeScreen = gameId
+    },
+    restartGame() {
+      this.miniGames.forEach(miniGame => {
+        miniGame.complete = false
+      })
+
+      this.activeScreen = 'Not Started'
     }
   },
   watch: {
-    gameComplete(status) {
-      if (status) {
-        setTimeout(() => {
-          launchConfetti()
-        }, 1000)
+    activeScreen(screen) {
+      if (screen === 'Home' && this.gameComplete) {
+        launchConfetti()
       }
     }
   }
@@ -89,13 +94,16 @@ export default {
     <div class="game-stage">
       <div class="content-wrapper nes-container is-dark" id="content-wrapper">
         <transition name="fade" mode="out-in">
-          <VictoryScreen v-if="gameComplete" />
+          <VictoryScreen
+            v-if="gameComplete && activeScreen === 'Home'"
+            @restart-game="restartGame"
+          />
           <WelcomeScreen
             v-else-if="activeScreen === 'Not Started'"
             @start-game="startGame"
           />
           <HomeScreen
-            v-else-if="activeScreen === 'Game Started'"
+            v-else-if="activeScreen === 'Home'"
             :taskProgress="taskProgress"
             :miniGames="miniGames"
             @register-selection="registerSelection"
