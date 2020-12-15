@@ -3,6 +3,10 @@ export default {
   emits: ['start-game'],
   data() {
     return {
+      heroImage: {
+        src: '/images/astronaut-laptop.png',
+        alt: 'Illustration of astronaut on a laptop. Credit to catalystuff'
+      },
       topic: 'Composition API'
     }
   },
@@ -16,11 +20,7 @@ export default {
 
 <template>
   <article class="screen">
-    <img
-      class="welcome-astronaut"
-      src="/images/astronaut-laptop.png"
-      alt="Illustration of astronaut on a laptop. Credit to catalystuff"
-    />
+    <img class="welcome-astronaut" :src="heroImage.src" :alt="heroImage.alt" />
     <h1>
       Launching with
       <br />
