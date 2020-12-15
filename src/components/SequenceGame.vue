@@ -57,7 +57,7 @@ export default {
         setTimeout(() => {
           this.userSequence = []
           this.displayValidation = false
-        }, 2000)
+        }, 1000)
       }
     }
   },
