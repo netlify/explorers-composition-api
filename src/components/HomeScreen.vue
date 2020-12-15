@@ -2,7 +2,16 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  props: ['taskProgress', 'miniGames'],
+  props: {
+    taskProgress: {
+      type: Number,
+      required: true
+    },
+    miniGames: {
+      type: Array,
+      required: true
+    }
+  },
   emits: ['register-selection'],
   methods: {
     registerSelection(id) {
