@@ -77,7 +77,9 @@ export default {
 <template>
   <div>
     <section>
-      <h2>{{ userWins ? 'Correct' : 'Mystery' }} Sequence</h2>
+      <h2 :class="userWins ? 'is-green' : 'is-red'">
+        {{ userWins ? 'Correct' : 'Mystery' }} Sequence
+      </h2>
       <div class="color-swatch-wrapper">
         <div
           v-for="(color, index) in displaySequence"

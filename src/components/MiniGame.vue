@@ -24,6 +24,7 @@ export default {
 
 <template>
   <section class="mini-game" id="mini-game">
+    <slot name="progress" />
     <h1>{{ gameTitle }}</h1>
     <slot />
     <div class="mini-game-cta">

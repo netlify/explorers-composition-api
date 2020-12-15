@@ -9,7 +9,7 @@ export default {
           label: 'red'
         },
         {
-          label: 'blue'
+          label: 'yellow'
         },
         {
           label: 'limegreen'
@@ -46,10 +46,10 @@ export default {
           label: 'limegreen'
         },
         {
-          label: 'cyan'
+          label: 'yellow'
         },
         {
-          label: 'blue'
+          label: 'cyan'
         },
         {
           label: 'red'
@@ -103,46 +103,16 @@ export default {
       this.userSelection.selectedWire = wire.label
 
       const wireIndex = this.userWires.findIndex(userWire => userWire === wire)
-      const itemOffsetLeft = $event.target.offsetLeft
-      const itemWidth = $event.target.clientWidth
-
-      const elContentWrapper = document.querySelector('#content-wrapper')
-      const elMiniGame = document.querySelector('#mini-game')
-      const elWireGame = document.querySelector('#wire-game')
-
-      const contentWrapperOffset = {
-        left: elContentWrapper.offsetLeft,
-        top: elContentWrapper.offsetTop
-      }
-
-      const miniGameOffset = {
-        left: elMiniGame.offsetLeft,
-        top: elMiniGame.offsetTop
-      }
-
-      const wireGameOffset = {
-        left: elWireGame.offsetLeft,
-        top: elWireGame.offsetTop
-      }
-
-      const offsetLeft =
-        itemOffsetLeft +
-        itemWidth +
-        wireGameOffset.left +
-        miniGameOffset.left +
-        contentWrapperOffset.left -
-        20
-      const offsetTop =
-        wireGameOffset.top + miniGameOffset.top + contentWrapperOffset.top + 65
+      const elWireRect = $event.target.getBoundingClientRect()
 
       this.drawWire = {
         display: true,
         label: wire.label,
         stroke: wire.label,
         x1: 0,
-        y1: 11 * wireIndex + 11 * (wireIndex + 1),
-        offsetLeft: offsetLeft,
-        offsetTop: offsetTop
+        y1: 30 + 50 * wireIndex,
+        offsetLeft: elWireRect.left + elWireRect.width,
+        offsetTop: elWireRect.top - 50 * wireIndex
       }
     },
     findCorrectWire(wire) {
@@ -156,18 +126,22 @@ export default {
 
 <template>
   <article class="wire-game" id="wire-game">
-    <p class="wire-game-description">Hook up the wires!</p>
+    <p class="wire-game-description">
+      Instructions: Click on the color on the left to select the wire to match,
+      and then select the corresponding color on the right to connect the power.
+    </p>
     <div class="wire-game-wireboard">
       <div class="wire-game-panel">
         <ul>
           <li v-for="wire in userWires" :key="`user-${wire.label}`">
-            <div
+            <button
+              class="nes-btn"
               @mousedown="registerWireColor($event, wire)"
               :style="`background-color: ${wire.label};`"
               :id="`wire-${wire.label}`"
             >
               {{ wire.label }}
-            </div>
+            </button>
           </li>
         </ul>
       </div>
@@ -199,8 +173,9 @@ export default {
 
       <div class="wire-game-panel">
         <ul>
-          <li
+          <button
             v-for="wire in correctWires"
+            class="nes-btn"
             :key="`user-${wire.label}`"
             :style="`background-color: ${wire.label}`"
             @mouseenter="registerMatchColor(wire)"
@@ -208,7 +183,7 @@ export default {
             :id="`wire-${wire.label}-end`"
           >
             {{ wire.label }}
-          </li>
+          </button>
         </ul>
       </div>
     </div>
@@ -222,6 +197,8 @@ export default {
 <style>
 .wire-game-description.wire-game-description {
   margin-bottom: 2rem;
+  font-size: 1rem;
+  text-align: left;
 }
 
 .wire-game-status {
@@ -240,10 +217,11 @@ export default {
 
 .wire-game .wire-game-svg {
   width: 100%;
+  height: 100%;
 }
 
 .wire-game-line {
-  stroke-width: 5px;
+  stroke-width: 10px;
 }
 
 .wire-game-wireboard {
@@ -255,5 +233,13 @@ export default {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.wire-game-panel ul {
+  display: grid;
+}
+
+.wire-game-panel .nes-btn {
+  width: 100%;
 }
 </style>

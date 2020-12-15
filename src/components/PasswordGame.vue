@@ -29,7 +29,9 @@ export default {
 
 <template>
   <form class="password-task" @submit.prevent>
-    <h2>{{ userWins ? 'ACCESS GRANTED' : 'ACCESS DENIED' }}</h2>
+    <h2 :class="userWins ? 'is-green' : 'is-red'">
+      {{ userWins ? 'ACCESS GRANTED' : 'ACCESS DENIED' }}
+    </h2>
     <div class="password-task-input">
       <label for="enter-password">Enter Password</label>
       <input

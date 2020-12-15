@@ -89,7 +89,7 @@ export default {
         </div>
         <div v-else-if="activeScreen === 'Game Started'">
           <h2>Mission</h2>
-          <p>Complete all three mini-games to win!</p>
+          <p>Complete all tasks!</p>
           <h3>Progress - {{ taskProgress }}%</h3>
           <progress
             class="nes-progress is-success"
@@ -116,6 +116,9 @@ export default {
           @select-screen="registerSelection"
           :gameId="activeScreen"
         >
+          <template v-slot:progress>
+            <h3>Progress - {{ taskProgress }}%</h3>
+          </template>
           <component :is="activeScreen" @mini-game-won="updateMiniGame" />
         </MiniGame>
       </div>
@@ -125,6 +128,11 @@ export default {
 </template>
 
 <style>
+:root {
+  --green: rgb(0, 255, 0);
+  --red: rgb(255, 0, 0);
+}
+
 html {
   width: 100%;
   height: 100vh;
@@ -185,7 +193,7 @@ h6 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 .panel {
@@ -219,5 +227,13 @@ h6 {
 
 .task-item-star.task-item-star {
   margin-bottom: 80px;
+}
+
+/* Utility Classes */
+.is-green {
+  color: var(--green);
+}
+.is-red {
+  color: var(--red);
 }
 </style>
