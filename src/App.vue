@@ -60,14 +60,6 @@ export default {
     }
   },
   methods: {
-    updateMiniGame(id) {
-      const miniGame = this.miniGames.find(miniGame => miniGame.id === id)
-
-      miniGame.complete = true
-    },
-    startGame() {
-      this.activeScreen = 'Home'
-    },
     registerSelection(gameId) {
       this.activeScreen = gameId
     },
@@ -77,6 +69,14 @@ export default {
       })
 
       this.activeScreen = 'Not Started'
+    },
+    startGame() {
+      this.activeScreen = 'Home'
+    },
+    updateMiniGame(id) {
+      const miniGame = this.miniGames.find(miniGame => miniGame.id === id)
+
+      miniGame.complete = true
     }
   },
   watch: {
