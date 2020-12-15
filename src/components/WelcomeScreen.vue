@@ -1,6 +1,11 @@
 <script>
 export default {
-  emits: ['start-game']
+  emits: ['start-game'],
+  data() {
+    return {
+      topic: 'Composition API'
+    }
+  }
 }
 </script>
 
@@ -14,7 +19,7 @@ export default {
     <h1>
       Launching with
       <br />
-      Composition API
+      {{ topic }}
     </h1>
     <p>
       Ready to embark
@@ -26,7 +31,7 @@ export default {
         class="je-link nes-btn is-success"
         href="https://explorers.netlify.com/learn/launching-with-composition-api?utm_source=twitter&utm_medium=je-comp-api-mis-bh&utm_campaign=devex"
       >
-        Learn Composition API
+        Learn {{ topic }}
         <br />
         with Jamstack Explorers!
       </a>
