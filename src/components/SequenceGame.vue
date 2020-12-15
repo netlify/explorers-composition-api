@@ -77,7 +77,7 @@ export default {
 <template>
   <div>
     <section>
-      <h2 class="sequence-game-status" :class="userWins ? 'is-green' : ''">
+      <p class="sequence-game-status" :class="userWins ? 'is-green' : ''">
         <i
           class="nes-icon trophy is-medium"
           :class="userWins ? '' : 'is-off'"
@@ -85,7 +85,7 @@ export default {
         <span class="sequence-game-status-text"
           >{{ userWins ? 'Correct' : 'Mystery' }} Sequence</span
         >
-      </h2>
+      </p>
       <div class="color-swatch-wrapper">
         <div
           v-for="(color, index) in displaySequence"
@@ -104,7 +104,7 @@ export default {
       </div>
     </section>
     <section v-if="!userWins">
-      <h2>Inputs</h2>
+      <p class="sequence-directions">Enter Input</p>
       <div class="color-swatch-wrapper">
         <button
           v-for="(color, index) in colorOptions"
@@ -166,6 +166,10 @@ export default {
 }
 
 .sequence-game-status-text {
-  margin-top: 13px;
+  margin-left: 10px;
+}
+
+.sequence-directions {
+  font-size: 1.5rem;
 }
 </style>
