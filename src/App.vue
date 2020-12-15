@@ -81,13 +81,31 @@ export default {
     <div class="game-stage">
       <div class="content-wrapper nes-container is-dark" id="content-wrapper">
         <transition name="fade" mode="out-in">
-          <div v-if="activeScreen === 'Not Started'" class="screen">
+          <div v-if="gameComplete">
+            <img
+              class="welcome-astronaut"
+              src="/images/astronaut-rocket.png"
+              alt="Illustration of astronaut on a rocket. Credit to catalystuff"
+            />
+            <h1>Great job <br />space cadet!</h1>
+            <p>
+              Ready to embark<br />
+              on your next mission?
+            </p>
+            <a
+              class="nes-btn is-primary"
+              href="https://explorers.netlify.com/?utm_source=twitter&utm_medium=comp-api-je-bh&utm_campaign=devex"
+            >
+              Find a new mission
+            </a>
+          </div>
+          <div v-else-if="activeScreen === 'Not Started'" class="screen">
             <img
               class="welcome-astronaut"
               src="/images/astronaut-laptop.png"
               alt="Illustration of astronaut on a laptop. Credit to catalystuff"
             />
-            <h1 class="title">Launching with <br />Composition API</h1>
+            <h1>Launching with <br />Composition API</h1>
             <p>
               Ready to embark<br />
               on your mission?
