@@ -110,6 +110,15 @@ export default {
               Ready to embark<br />
               on your mission?
             </p>
+            <div class="je-link-wrapper">
+              <a
+                class="je-link nes-btn is-success"
+                href="https://explorers.netlify.com/learn/launching-with-composition-api?utm_source=twitter&utm_medium=je-comp-api-mis-bh&utm_campaign=devex"
+              >
+                Learn Composition API <br />
+                with Jamstack Explorers!
+              </a>
+            </div>
             <button class="nes-btn is-primary" @click="startGame">
               Start Mission
             </button>
@@ -285,11 +294,22 @@ h6 {
   }
 }
 
+.je-link {
+  background-color: #42b883;
+}
+
+.je-link-wrapper {
+  margin-bottom: 25px;
+}
+
 /* Utility Classes */
 .is-green {
   color: var(--green);
 }
 .is-red {
   color: var(--red);
+}
+.mb2 {
+  margin-bottom: 30px;
 }
 </style>
