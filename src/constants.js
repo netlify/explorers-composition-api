@@ -12,3 +12,9 @@ export const WIRE_OPTIONS = [
     label: 'cyan'
   }
 ]
+
+export const PASSWORD_STATUS = {
+  NEUTRAL: 'access-locked',
+  FAIL: 'access-denied',
+  PASS: 'access-granted'
+}

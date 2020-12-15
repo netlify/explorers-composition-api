@@ -1,4 +1,6 @@
 <script>
+import { PASSWORD_STATUS } from '../constants'
+
 export default {
   data() {
     return {
@@ -11,12 +13,12 @@ export default {
       return Math.floor(Math.random() * 1000000 + 1000).toString()
     },
     gameStatus() {
-      if (this.status === 'Wrong password!') {
+      if (this.status === PASSWORD_STATUS.FAIL) {
         return {
           styles: 'is-red',
           text: 'Access Denied'
         }
-      } else if (this.status === 'Player Wins!') {
+      } else if (this.status === PASSWORD_STATUS.PASS) {
         return {
           styles: 'is-green',
           text: 'Access Granted'
@@ -29,16 +31,16 @@ export default {
       }
     },
     userWins() {
-      return this.status === 'Player Wins!'
+      return this.status === PASSWORD_STATUS.PASS
     }
   },
   methods: {
     checkPassword() {
       if (this.correctPassword === this.passwordInput) {
-        this.status = 'Player Wins!'
+        this.status = PASSWORD_STATUS.PASS
         this.$emit('mini-game-won', 'password-game')
       } else {
-        this.status = 'Wrong password!'
+        this.status = PASSWORD_STATUS.FAIL
       }
     }
   }
