@@ -5,13 +5,11 @@ export default {
   data() {
     return {
       status: 'In Progress',
-      passwordInput: ''
+      passwordInput: '',
+      correctPassword: 0
     }
   },
   computed: {
-    correctPassword() {
-      return Math.floor(Math.random() * 1000000 + 1000).toString()
-    },
     gameStatus() {
       if (this.status === PASSWORD_STATUS.FAIL) {
         return {
@@ -42,10 +40,20 @@ export default {
       } else {
         this.status = PASSWORD_STATUS.FAIL
       }
+    },
+    generateNewPassword() {
+      return Math.floor(Math.random() * 1000000 + 1000).toString()
     }
   },
   mounted() {
-    this.status = PASSWORD_STATUS
+    this.correctPassword = this.generateNewPassword()
+  },
+  watch: {
+    status(gameState) {
+      if (gameState === PASSWORD_STATUS.FAIL) {
+        this.correctPassword = this.generateNewPassword()
+      }
+    }
   }
 }
 </script>
