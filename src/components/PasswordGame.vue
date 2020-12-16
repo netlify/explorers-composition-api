@@ -3,7 +3,7 @@ import { computed, reactive, toRefs } from 'vue'
 import { PASSWORD_STATUS } from '../constants'
 
 export default {
-  setup() {
+  setup(props, context) {
     const state = reactive({
       status: 'In Progress',
       passwordInput: '',
@@ -31,21 +31,23 @@ export default {
       })
     })
 
-    return {
-      ...toRefs(state)
-    }
-  },
-  methods: {
-    checkPassword() {
-      if (this.correctPassword === this.passwordInput) {
-        this.status = PASSWORD_STATUS.PASS
-        this.$emit('mini-game-won', 'password-game')
+    const checkPassword = () => {
+      if (state.correctPassword === state.passwordInput) {
+        state.status = PASSWORD_STATUS.PASS
+        context.emit('mini-game-won', 'password-game')
       } else {
-        this.status = PASSWORD_STATUS.FAIL
+        state.status = PASSWORD_STATUS.FAIL
       }
-    },
-    generateNewPassword() {
+    }
+
+    const generateNewPassword = () => {
       return Math.floor(Math.random() * 1000000 + 1000).toString()
+    }
+
+    return {
+      ...toRefs(state),
+      checkPassword,
+      generateNewPassword
     }
   },
   mounted() {
