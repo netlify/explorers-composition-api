@@ -1,5 +1,5 @@
 <script>
-import { computed, reactive, toRefs } from 'vue'
+import { computed, onMounted, reactive, toRefs } from 'vue'
 import { PASSWORD_STATUS } from '../constants'
 
 export default {
@@ -44,14 +44,15 @@ export default {
       return Math.floor(Math.random() * 1000000 + 1000).toString()
     }
 
+    onMounted(() => {
+      state.correctPassword = generateNewPassword()
+    })
+
     return {
       ...toRefs(state),
       checkPassword,
       generateNewPassword
     }
-  },
-  mounted() {
-    this.correctPassword = this.generateNewPassword()
   },
   watch: {
     status(gameState) {
