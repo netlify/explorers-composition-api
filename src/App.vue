@@ -74,12 +74,10 @@ export default {
     },
     startGame() {
       this.activeScreen = 'Home'
-    },
-    updateMiniGame(id) {
-      const miniGame = this.miniGames.find(miniGame => miniGame.id === id)
-
-      miniGame.complete = true
     }
+    /**
+     * TODO: Technicians can't get to the other tasks!
+     */
   },
   watch: {
     activeScreen(screen) {

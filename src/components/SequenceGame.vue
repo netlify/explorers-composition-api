@@ -43,23 +43,10 @@ export default {
         ...color,
         matched: false
       })
-    },
-    checkColorSequence() {
-      this.userSequence.forEach((item, index) => {
-        item.matched = item.label === this.correctSequence[index]
-      })
-
-      this.displayValidation = true
-
-      if (this.userWins) {
-        this.$emit('mini-game-won', 'sequence-game')
-      } else {
-        setTimeout(() => {
-          this.userSequence = []
-          this.displayValidation = false
-        }, 1000)
-      }
     }
+    /**
+     * TODO: Check color sequence is gone! Help!
+     */
   },
   watch: {
     userSequence: {

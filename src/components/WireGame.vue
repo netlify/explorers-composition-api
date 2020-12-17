@@ -36,11 +36,9 @@ export default {
     }
   },
   watch: {
-    userWins(status) {
-      if (status) {
-        this.$emit('mini-game-won', 'wire-game')
-      }
-    }
+    /**
+     * TODO: It can't communicate with the main dashboard!
+     */
   },
   mounted() {
     window.addEventListener('mousemove', this.handleMouseMove)
