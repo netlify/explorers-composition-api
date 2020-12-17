@@ -68,6 +68,10 @@ export default {
 }
 
 @media screen and (min-width: 787px) {
+  .je-link {
+    font-size: 1rem;
+  }
+
   .welcome-astronaut {
     max-width: 100%;
     margin-bottom: 2rem;
