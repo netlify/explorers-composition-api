@@ -92,7 +92,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="app-wrapper">
     <div class="game-stage">
       <div class="content-wrapper nes-container is-dark" id="content-wrapper">
         <transition name="fade" mode="out-in">
@@ -138,6 +138,7 @@ html {
   height: 100vh;
   background: 50% 100% / cover no-repeat url('/images/background-dashboard.png'),
     80% -175px / cover no-repeat url('/images/background-planet.jpg');
+  background-attachment: fixed;
 }
 
 body {
@@ -158,7 +159,16 @@ h6 {
   font-family: 'Ruslan Display', cursive;
 }
 
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .game-stage {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

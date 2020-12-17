@@ -22,10 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: 30px;
 }
 
 .app-footer-wrapper {
