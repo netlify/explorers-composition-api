@@ -1,5 +1,5 @@
 <script>
-import { computed, reactive, toRefs } from 'vue'
+import { computed, reactive, toRefs, watch } from 'vue'
 import AppFooter from './components/AppFooter.vue'
 import HomeScreen from './components/HomeScreen.vue'
 import MiniGame from './components/MiniGame.vue'
@@ -82,19 +82,21 @@ export default {
       miniGame.complete = true
     }
 
+    watch(
+      () => state.activeScreen,
+      currentScreen => {
+        if (currentScreen === 'Home' && state.gameComplete) {
+          launchConfetti()
+        }
+      }
+    )
+
     return {
       ...toRefs(state),
       registerSelection,
       restartGame,
       startGame,
       updateMiniGame
-    }
-  },
-  watch: {
-    activeScreen(screen) {
-      if (screen === 'Home' && this.gameComplete) {
-        launchConfetti()
-      }
     }
   }
 }
