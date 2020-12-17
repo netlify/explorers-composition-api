@@ -175,7 +175,7 @@ export default {
 <style>
 .wire-game-description.wire-game-description {
   margin-bottom: 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: left;
 }
 

@@ -38,8 +38,7 @@ export default {
 <style>
 .mini-game {
   position: relative;
-  padding: 2rem;
-  padding-bottom: 0;
+  padding: 0 2rem;
 }
 
 .mini-game h1 {

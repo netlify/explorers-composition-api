@@ -98,7 +98,7 @@ export default {
           :style="`background-color: ${color.label};`"
         >
           <i
-            class="color-swatch-heart nes-icon is-large heart"
+            class="color-swatch-heart nes-icon is-medium heart"
             :class="color.matched ? '' : 'is-empty'"
           ></i>
           <span class="color-swatch-text">
@@ -152,8 +152,9 @@ export default {
   font-weight: bold;
 }
 
-.sequence-game-description {
+.sequence-game-description.sequence-game-description {
   text-align: left;
+  font-size: 1rem;
 }
 
 .sequence-game-status {
