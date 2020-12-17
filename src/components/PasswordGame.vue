@@ -1,5 +1,5 @@
 <script>
-import { computed, onMounted, reactive, toRefs } from 'vue'
+import { computed, onMounted, reactive, toRefs, watch } from 'vue'
 import { PASSWORD_STATUS } from '../constants'
 
 export default {
@@ -48,17 +48,19 @@ export default {
       state.correctPassword = generateNewPassword()
     })
 
+    watch(
+      () => state.status,
+      gameState => {
+        if (gameState === PASSWORD_STATUS.FAIL) {
+          state.correctPassword = generateNewPassword()
+        }
+      }
+    )
+
     return {
       ...toRefs(state),
       checkPassword,
       generateNewPassword
-    }
-  },
-  watch: {
-    status(gameState) {
-      if (gameState === PASSWORD_STATUS.FAIL) {
-        this.correctPassword = this.generateNewPassword()
-      }
     }
   }
 }
