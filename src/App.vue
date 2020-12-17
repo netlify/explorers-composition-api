@@ -196,17 +196,8 @@ h6 {
   margin-bottom: 1.5rem;
 }
 
-.task-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 30px;
-  margin: 0;
-  padding: 0;
-}
-
-.task-item-star.task-item-star {
-  margin-bottom: 80px;
+.content-wrapper .nes-progress {
+  height: 36px;
 }
 
 .fade-enter-active,

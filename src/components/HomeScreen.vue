@@ -45,3 +45,31 @@ export default {
     </ul>
   </article>
 </template>
+
+<style>
+.task-list {
+  list-style: none;
+  display: grid;
+  margin: 0;
+  padding: 0;
+}
+
+.task-item-star.task-item-star {
+  margin-right: 32px;
+  margin-bottom: 50px;
+  transform: scale(3);
+}
+
+@media screen and (min-width: 787px) {
+  .task-list {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 30px;
+  }
+
+  .task-item-star.task-item-star {
+    margin-right: 48px;
+    margin-bottom: 80px;
+    transform: scale(4);
+  }
+}
+</style>
