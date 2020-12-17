@@ -1,7 +1,7 @@
 <template>
   <footer class="app-footer">
     <p class="app-footer-wrapper nes-container is-dark">
-      Powered by
+      <span>Powered by</span>
       <a
         class="app-footer-link"
         href="https://www.netlify.com/?utm_source=deployed-app&utm_medium=launch-comp-bh&utm_campaign=devex"
@@ -35,6 +35,10 @@
   justify-content: center;
   margin-top: 15px;
   font-weight: 500;
+}
+
+.app-footer-wrapper > * {
+  flex-shrink: 0;
 }
 
 .app-footer-link {

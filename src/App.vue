@@ -158,11 +158,19 @@ h6 {
   font-family: 'Ruslan Display', cursive;
 }
 
+.game-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
 .game-stage h1 {
   color: white;
-  font-size: 2.75rem;
   line-height: 1;
   margin-bottom: 1rem;
+  font-size: 1.8rem;
 }
 
 .game-stage h2 {
@@ -178,22 +186,14 @@ h6 {
 }
 
 .content-wrapper {
-  padding: 4rem;
+  padding: 1.5rem;
   text-align: center;
   max-width: 80%;
 }
 
 .content-wrapper p {
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-bottom: 1.5rem;
-}
-
-.game-stage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 5rem;
 }
 
 .task-list {
@@ -231,12 +231,18 @@ h6 {
   }
 }
 
-.je-link {
-  background-color: #42b883;
-}
+@media screen and (min-width: 787px) {
+  .content-wrapper {
+    padding: 4rem;
+  }
 
-.je-link-wrapper {
-  margin-bottom: 25px;
+  .game-stage {
+    margin-top: 5rem;
+  }
+
+  .game-stage h1 {
+    font-size: 2.75rem;
+  }
 }
 
 /* Utility Classes */

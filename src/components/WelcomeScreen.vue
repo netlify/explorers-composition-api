@@ -36,9 +36,7 @@ export default {
         class="je-link nes-btn is-success"
         href="https://explorers.netlify.com/learn/launching-with-composition-api?utm_source=twitter&utm_medium=je-comp-api-mis-bh&utm_campaign=devex"
       >
-        Learn {{ topic }}
-        <br />
-        with Jamstack Explorers!
+        Learn with <br />Jamstack Explorers!
       </a>
     </div>
     <button class="welcome-primary-cta nes-btn is-primary" @click="startGame">
@@ -49,14 +47,34 @@ export default {
 
 <style>
 .welcome-astronaut {
-  max-width: 100%;
-  margin-bottom: 2rem;
+  max-width: 120px;
+  margin-bottom: 1rem;
   animation: hovering 3s infinite ease-in-out;
 }
 
 .welcome-primary-cta {
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
+}
+
+.je-link {
+  background-color: #42b883;
+  font-size: 0.8rem;
+}
+
+.je-link-wrapper {
+  margin-bottom: 25px;
+}
+
+@media screen and (min-width: 787px) {
+  .welcome-astronaut {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .welcome-primary-cta {
+    font-size: 1.2rem;
+  }
 }
 </style>
